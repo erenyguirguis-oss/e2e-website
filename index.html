@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>E2E Human Capital Solutions</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap">
+<style>
+:root{
+  --cream:#F4ECDA; --cream2:#EFE3CB; --ink:#2B2420; --mute:#6B6153;
+  --teal:#0F4C5C; --teal-d:#0B3A46; --teal-deep:#0A3038; --amber:#C9A227; --amber-d:#A8841C;
+  --line:#E3D7BC; --card:#FBF6E9;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:#F8F0DD;color:var(--ink);font-family:Poppins,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
+svg{display:block}
+img{max-width:100%}
+.serif{font-family:"Playfair Display",Georgia,serif}
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+a{color:inherit;text-decoration:none}
+
+/* ---- nav ---- */
+.nav{position:sticky;top:0;z-index:40;background:var(--cream);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1140px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:28px}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto;cursor:pointer}
+.brand .mark{width:34px}
+.brand b{font-size:19px;letter-spacing:.02em;color:var(--teal);font-weight:700}
+.brand small{display:block;font-size:9px;letter-spacing:.14em;color:var(--mute);font-weight:600}
+.navlinks{display:flex;gap:26px;font-size:14.5px;font-weight:500;color:#3A332C}
+.navlinks a{opacity:.72;padding-bottom:4px;border-bottom:2px solid transparent}
+.navlinks a:hover{opacity:1}
+.navlinks a.active{opacity:1;border-color:var(--amber);color:var(--teal);font-weight:600}
+.cta-top{background:var(--teal);color:#fff;font-weight:600;font-size:14px;padding:12px 20px;border-radius:4px;white-space:nowrap}
+.cta-top:hover{background:var(--teal-d)}
+@media (max-width:860px){.navlinks{display:none}}
+
+/* ---- hero ---- */
+.hero{position:relative;color:#fff;overflow:hidden;min-height:620px;display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#143F4C,#0F4C5C 55%,#1C2B30 100%);z-index:0}
+.hero-bg.has-img{background-size:cover;background-position:center}
+.hero-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,20,18,.78) 10%,rgba(15,20,18,.38) 55%,rgba(15,20,18,.15) 100%)}
+.hero-dots{position:absolute;right:-60px;top:-60px;width:360px;height:360px;border-radius:50%;border:2px solid rgba(201,162,39,.3);z-index:0}
+.hero-dots:before{content:"";position:absolute;inset:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,.18)}
+.hero-inner{position:relative;z-index:1;padding:64px 28px 56px;max-width:1140px;margin:0 auto;width:100%}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.22em;color:#E7DCC2;margin:0 0 18px}
+.hero h1{font-size:50px;line-height:1.14;margin:0 0 20px;max-width:17ch;font-weight:600}
+.hero p.lead{font-size:17px;max-width:56ch;color:#F1EADA;margin:0 0 30px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:4px;font-weight:600;font-size:15px;cursor:pointer;border:none}
+.btn-amber{background:var(--amber);color:#2B2420}
+.btn-amber:hover{background:var(--amber-d)}
+.btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+.btn-outline:hover{border-color:#fff}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-teal:hover{background:var(--teal-d)}
+
+/* ---- page header (inner pages) ---- */
+.pagehead{background:var(--teal);color:#fff;padding:54px 0 42px;position:relative;overflow:hidden}
+.pagehead .ring{position:absolute;right:-40px;top:-50px;width:220px;height:220px;border-radius:50%;border:2px solid rgba(201,162,39,.28)}
+.pagehead .eyebrow{color:#CDE3E6;margin-bottom:10px}
+.pagehead h1{font-size:36px;margin:0;font-weight:600;position:relative;z-index:1}
+.pagehead p{color:#D9E8EA;max-width:56ch;margin:12px 0 0;font-size:15.5px;position:relative;z-index:1}
+
+/* ---- sections ---- */
+section{padding:72px 0}
+.kicker{font-size:12px;font-weight:700;letter-spacing:.18em;color:var(--amber-d);margin:0 0 8px}
+h2{font-size:30px;margin:0 0 14px;font-weight:600}
+h2.bold-head{font-weight:800;font-size:36px;letter-spacing:-.01em}
+.section-head{max-width:640px;margin:0 auto 42px;text-align:center}
+.section-head p{color:var(--mute);font-size:15.5px;margin:0}
+
+.grid{display:grid;gap:22px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px;transition:box-shadow .15s,transform .15s}
+.card.clickable{cursor:pointer}
+.card.clickable:hover{box-shadow:0 10px 24px rgba(15,20,18,.08);transform:translateY(-2px)}
+.card .ico{width:46px;height:46px;border-radius:10px;background:var(--cream);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.card h3{font-size:17px;margin:0 0 8px;color:var(--teal)}
+.card p{font-size:14px;color:var(--mute);margin:0 0 10px}
+.card .more{font-size:13px;font-weight:600;color:var(--amber-d)}
+
+.band{background:var(--teal);color:#fff}
+.band .section-head p{color:#CFE3E7}
+.diff .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+.diff .card h3{color:#fff}
+.diff .card p{color:#D7E6E8;margin:0}
+.diff .ico{background:rgba(201,162,39,.18)}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+@media (max-width:760px){.split{grid-template-columns:1fr}}
+.valuelist{list-style:none;margin:0;padding:0}
+.valuelist li{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15px}
+.valuelist li b{color:var(--teal);min-width:112px;display:inline-block}
+
+.contact-card{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:30px}
+.contact-card h4{margin:0 0 4px;font-size:13px;letter-spacing:.1em;color:var(--mute);text-transform:uppercase}
+.contact-card a,.contact-card p{display:block;font-size:16px;color:var(--teal);margin:0 0 18px;font-weight:600}
+
+.tabswitch{display:inline-flex;background:var(--cream);border:1px solid var(--line);border-radius:30px;padding:4px;margin-bottom:26px;gap:4px}
+.tabswitch a{padding:10px 20px;border-radius:24px;font-size:14px;font-weight:600;color:var(--mute)}
+.tabswitch a.active{background:var(--teal);color:#fff}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:30px}
+.form-card h3{margin:0 0 6px;font-size:19px;color:var(--teal)}
+.form-card>p.hint{margin:0 0 22px;font-size:14px;color:var(--mute)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media (max-width:600px){.form-grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--mute);text-transform:uppercase}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field textarea{font:inherit;font-size:14.5px;padding:11px 13px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink)}
+.field textarea{resize:vertical;min-height:100px}
+.field input:focus,.field textarea:focus{outline:2px solid var(--amber);outline-offset:1px}
+.file-field{border:1.5px dashed var(--line);border-radius:8px;padding:16px;display:flex;align-items:center;gap:12px;background:var(--cream)}
+.file-field .fname{font-size:13.5px;color:var(--mute);flex:1}
+.file-field label.pick{background:var(--teal);color:#fff;font-size:13px;font-weight:600;padding:9px 16px;border-radius:6px;cursor:pointer;flex:none}
+.form-note{font-size:12.5px;color:var(--mute);margin:10px 0 0}
+.form-status{font-size:13.5px;font-weight:600;margin-top:14px;min-height:18px}
+.form-status.ok{color:var(--teal)}
+
+.dualpath{background:var(--cream);position:relative;background-image:radial-gradient(rgba(15,76,92,.09) 1.4px, transparent 1.4px);background-size:16px 16px}
+.dualpath .wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:34px 28px}
+@media (max-width:720px){.dualpath .wrap{grid-template-columns:1fr}}
+.dpcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 26px;display:flex;align-items:center;gap:16px;transition:box-shadow .15s,transform .15s}
+.dpcard:hover{box-shadow:0 10px 24px rgba(15,20,18,.1);transform:translateY(-2px)}
+.dpcard .dpico{width:48px;height:48px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;flex:none}
+.dpcard .body{flex:1}
+.dpcard h4{margin:0 0 4px;font-size:17px;color:var(--teal)}
+.dpcard p{margin:0;font-size:13.5px;color:var(--mute)}
+.dpcard .go{width:36px;height:36px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;flex:none;font-size:16px}
+.dpcard:hover .go{background:var(--amber);color:#2B2420}
+.wave{display:block;width:100%;height:46px;margin-top:-1px}
+
+.ribbon{height:5px;border-radius:5px 5px 0 0;background:linear-gradient(90deg,var(--teal),var(--amber));margin:-26px -26px 18px}
+.card{position:relative}
+
+.ind-teaser{background:var(--card)}
+.ind-tile{border-radius:10px;overflow:hidden;position:relative;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;padding:16px;background:var(--teal-deep)}
+.ind-tile .scene{position:absolute;inset:0;z-index:0}
+.ind-tile .scene svg{width:100%;height:100%;display:block}
+.ind-tile span{position:relative;z-index:2;color:#fff;font-weight:600;font-size:14.5px}
+.ind-tile .badge{position:relative;z-index:2;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center}
+.ind-tile:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(195deg,rgba(10,48,56,.25) 0%,rgba(10,48,56,.82) 100%)}
+
+footer.site{background:var(--teal-deep);color:#EFE6D2;padding:56px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+@media (max-width:720px){.foot-grid{grid-template-columns:1fr}}
+.foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.foot-brand b{font-size:18px;color:#fff}
+footer.site h4{font-size:13px;letter-spacing:.1em;color:#C9A227;margin:0 0 12px;text-transform:uppercase}
+footer.site p,footer.site a{font-size:14px;color:#E7DCC8;margin:0 0 8px;display:block}
+footer.site a:hover{color:#fff}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:36px;padding-top:18px;font-size:12.5px;color:#C9BBA2;text-align:center}
+
+/* ---- editable affordances ---- */
+[data-field]{outline:none;border-radius:4px}
+.editing [data-field]{box-shadow:0 0 0 2px rgba(201,162,39,.55);background:rgba(201,162,39,.08)}
+.edit-fab{position:fixed;right:22px;bottom:22px;z-index:100;display:flex;gap:10px;align-items:center}
+.edit-fab button{border:none;cursor:pointer;font-family:Poppins,sans-serif;font-weight:600;font-size:14px;border-radius:30px;padding:13px 20px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.edit-fab .start{background:var(--teal);color:#fff}
+.edit-fab .save{background:var(--amber);color:#2B2420}
+.edit-fab .cancel{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.edit-fab .status{font-size:12.5px;color:#fff;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:20px}
+.img-upload{position:absolute;left:28px;bottom:28px;z-index:2;background:rgba(0,0,0,.55);color:#fff;font-size:12.5px;padding:9px 14px;border-radius:20px;cursor:pointer;border:1px solid rgba(255,255,255,.4)}
+.hidden{display:none !important}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script id="site-state" type="application/json">
+{
+  "eyebrow": "HUMAN CAPITAL SOLUTIONS",
+  "heroTitle": "Your End-to-End Talent Partner Across Egypt & the GCC",
+  "heroLead": "We partner with ambitious companies to solve their hardest talent challenges — from headhunting and executive search to full workforce support.",
+  "heroImageId": null,
+  "aboutText": "E2E Human Capital Solutions connects employers and professionals across Egypt and the GCC. Gold is the employee, teal is the employer — our loop mark is the promise that the relationship does not end at the offer letter.",
+  "vision": "To be the most trusted human capital partner in the region, where every hire is a lasting match for the employee and the employer.",
+  "mission": "To help companies find and hire the right people, through a search process built on real reach and reliable delivery, not just resumes.",
+  "services": [
+    {"title": "Headhunting & Talent Sourcing", "text": "We approach the right people directly, including passive candidates who are not actively job hunting."},
+    {"title": "Executive & Specialized Search", "text": "A dedicated, confidential search for leadership and hard-to-fill roles."},
+    {"title": "Screening & Shortlisting", "text": "You see only candidates who are genuinely ready to move forward."},
+    {"title": "Onboarding Support", "text": "We stay engaged after the offer, through negotiation and the probation period."}
+  ],
+  "diffs": [
+    {"title": "Senior attention, always", "text": "You work directly with experienced recruiters, not a rotating junior team."},
+    {"title": "Reach beyond job boards", "text": "We go directly to the right people, including candidates who aren't actively looking."},
+    {"title": "Full visibility", "text": "A clear pipeline report on every role, from sourced to offered."},
+    {"title": "One partner that grows with you", "text": "Start with a single hire, and add staffing and HR support when ready."}
+  ],
+  "values": [
+    {"title": "Honesty", "text": "We tell clients and candidates the truth, even when it is not the easy answer."},
+    {"title": "Respect", "text": "Every candidate and client is treated as a long-term relationship."},
+    {"title": "Reliability", "text": "We do what we say, and we report on it."},
+    {"title": "Confidentiality", "text": "Client and candidate information is always protected."}
+  ],
+  "industries": [
+    {"title": "Construction & Engineering", "text": "Site, project, and technical hiring for contractors and developers."},
+    {"title": "Manufacturing & Industrial", "text": "Plant, operations, and supply-chain roles across production sites."},
+    {"title": "Retail & FMCG", "text": "Commercial, merchandising, and store leadership talent."},
+    {"title": "Technology & Digital", "text": "Product, engineering, and digital roles for growing tech teams."},
+    {"title": "Logistics & Supply Chain", "text": "Warehousing, freight, and distribution hiring at every level."},
+    {"title": "Hospitality & Real Estate", "text": "Front-line to leadership hiring for hotels, F&B, and property."}
+  ],
+  "contactPhone": "+20 000 000 0000",
+  "contactEmail": "email@company.com",
+  "contactAddress": "62 Thawra Street, Heliopolis, Cairo, Egypt",
+  "contactWebsite": "www.yourwebsite.com"
+}
+</script>
+
+<script id="logic-script">
+(function(){
+  const APP = document.getElementById('app');
+  const ROUTES = ['home','services','about','industries','contact'];
+  const LABELS = {home:'Home', services:'Services', about:'About', industries:'Industries', contact:'Contact'};
+
+  function mark(a,b,c){
+    return `<svg class="mark" viewBox="124 30 132 120" xmlns="http://www.w3.org/2000/svg" aria-label="E2E">
+      <circle cx="190" cy="90" r="52" fill="none" stroke="${a}" stroke-width="10" stroke-dasharray="230 97" stroke-linecap="round" transform="rotate(-60 190 90)"/>
+      <circle cx="190" cy="90" r="52" fill="none" stroke="${b}" stroke-width="10" stroke-dasharray="70 257" stroke-dashoffset="-260" stroke-linecap="round" transform="rotate(-60 190 90)"/>
+      <circle cx="138" cy="90" r="11" fill="${a}"/><circle cx="242" cy="90" r="11" fill="${b}"/>
+      <line x1="152" y1="90" x2="228" y2="90" stroke="${c}" stroke-width="3" stroke-linecap="round"/>
+    </svg>`;
+  }
+  const ICONS = {
+    search: '<svg width="22" height="22" viewBox="0 0 100 100"><circle cx="44" cy="44" r="17" fill="none" stroke="#0F4C5C" stroke-width="7"/><line x1="56" y1="56" x2="74" y2="74" stroke="#0F4C5C" stroke-width="8" stroke-linecap="round"/></svg>',
+    star: '<svg width="22" height="22" viewBox="0 0 100 100"><path d="M50 22 L58 42 L80 44 L63 58 L68 80 L50 68 L32 80 L37 58 L20 44 L42 42 Z" fill="#C9A227"/></svg>',
+    funnel: '<svg width="22" height="22" viewBox="0 0 100 100"><path d="M24 26 H76 L58 52 V76 L42 82 V52 Z" fill="none" stroke="#0F4C5C" stroke-width="7" stroke-linejoin="round"/></svg>',
+    link: '<svg width="22" height="22" viewBox="0 0 100 100"><circle cx="32" cy="50" r="11" fill="#0F4C5C"/><circle cx="68" cy="50" r="11" fill="#C9A227"/><line x1="43" y1="50" x2="57" y2="50" stroke="#B9AE98" stroke-width="4"/></svg>',
+    bolt: '<svg width="22" height="22" viewBox="0 0 100 100"><path d="M54 16 L28 56 H46 L40 84 L72 42 H52 Z" fill="#C9A227"/></svg>',
+    shield: '<svg width="22" height="22" viewBox="0 0 100 100"><path d="M50 14 L82 26 V48 C82 70 68 86 50 92 C32 86 18 70 18 48 V26 Z" fill="none" stroke="#0F4C5C" stroke-width="7" stroke-linejoin="round"/></svg>',
+    building: '<svg width="22" height="22" viewBox="0 0 100 100"><rect x="26" y="20" width="48" height="66" fill="none" stroke="#0F4C5C" stroke-width="6"/><rect x="36" y="32" width="10" height="10" fill="#C9A227"/><rect x="54" y="32" width="10" height="10" fill="#C9A227"/><rect x="36" y="50" width="10" height="10" fill="#C9A227"/><rect x="54" y="50" width="10" height="10" fill="#C9A227"/></svg>',
+    briefcase: '<svg width="24" height="24" viewBox="0 0 100 100"><rect x="18" y="38" width="64" height="42" rx="6" fill="none" stroke="#0F4C5C" stroke-width="6"/><path d="M38 38 V28 a6 6 0 0 1 6-6 h12 a6 6 0 0 1 6 6 V38" fill="none" stroke="#0F4C5C" stroke-width="6"/><line x1="18" y1="58" x2="82" y2="58" stroke="#C9A227" stroke-width="6"/></svg>',
+    user: '<svg width="24" height="24" viewBox="0 0 100 100"><circle cx="50" cy="36" r="16" fill="none" stroke="#0F4C5C" stroke-width="6"/><path d="M22 82 C22 62 36 54 50 54 C64 54 78 62 78 82" fill="none" stroke="#C9A227" stroke-width="6" stroke-linecap="round"/></svg>',
+    crane: '<svg width="22" height="22" viewBox="0 0 100 100"><line x1="22" y1="86" x2="22" y2="18" stroke="#0F4C5C" stroke-width="6" stroke-linecap="round"/><line x1="22" y1="22" x2="80" y2="22" stroke="#0F4C5C" stroke-width="6" stroke-linecap="round"/><line x1="22" y1="22" x2="14" y2="38" stroke="#0F4C5C" stroke-width="6" stroke-linecap="round"/><line x1="70" y1="22" x2="70" y2="40" stroke="#C9A227" stroke-width="6" stroke-linecap="round"/><rect x="62" y="40" width="16" height="12" rx="2" fill="#C9A227"/><line x1="10" y1="86" x2="34" y2="86" stroke="#0F4C5C" stroke-width="6" stroke-linecap="round"/></svg>',
+    gear: '<svg width="22" height="22" viewBox="0 0 100 100"><path d="M50 28 a22 22 0 1 0 0.1 0 Z" fill="none" stroke="#0F4C5C" stroke-width="7"/><circle cx="50" cy="50" r="8" fill="#C9A227"/><g stroke="#0F4C5C" stroke-width="7" stroke-linecap="round"><line x1="50" y1="10" x2="50" y2="22"/><line x1="50" y1="78" x2="50" y2="90"/><line x1="10" y1="50" x2="22" y2="50"/><line x1="78" y1="50" x2="90" y2="50"/><line x1="21" y1="21" x2="29" y2="29"/><line x1="71" y1="71" x2="79" y2="79"/><line x1="79" y1="21" x2="71" y2="29"/><line x1="29" y1="71" x2="21" y2="79"/></g></svg>',
+    bag: '<svg width="22" height="22" viewBox="0 0 100 100"><path d="M28 38 H72 L68 86 H32 Z" fill="none" stroke="#0F4C5C" stroke-width="6" stroke-linejoin="round"/><path d="M38 38 V28 a12 12 0 0 1 24 0 V38" fill="none" stroke="#C9A227" stroke-width="6"/></svg>',
+    chip: '<svg width="22" height="22" viewBox="0 0 100 100"><rect x="30" y="30" width="40" height="40" rx="3" fill="none" stroke="#0F4C5C" stroke-width="6"/><rect x="42" y="42" width="16" height="16" fill="#C9A227"/><g stroke="#0F4C5C" stroke-width="5" stroke-linecap="round"><line x1="42" y1="12" x2="42" y2="30"/><line x1="58" y1="12" x2="58" y2="30"/><line x1="42" y1="70" x2="42" y2="88"/><line x1="58" y1="70" x2="58" y2="88"/><line x1="12" y1="42" x2="30" y2="42"/><line x1="12" y1="58" x2="30" y2="58"/><line x1="70" y1="42" x2="88" y2="42"/><line x1="70" y1="58" x2="88" y2="58"/></g></svg>',
+    truck: '<svg width="22" height="22" viewBox="0 0 100 100"><rect x="10" y="38" width="46" height="30" fill="none" stroke="#0F4C5C" stroke-width="6"/><path d="M56 46 H76 L88 58 V68 H56 Z" fill="none" stroke="#0F4C5C" stroke-width="6" stroke-linejoin="round"/><circle cx="30" cy="76" r="8" fill="#C9A227"/><circle cx="74" cy="76" r="8" fill="#C9A227"/></svg>',
+    key: '<svg width="22" height="22" viewBox="0 0 100 100"><circle cx="26" cy="50" r="18" fill="none" stroke="#0F4C5C" stroke-width="7"/><line x1="44" y1="50" x2="86" y2="50" stroke="#0F4C5C" stroke-width="7" stroke-linecap="round"/><line x1="68" y1="50" x2="68" y2="66" stroke="#C9A227" stroke-width="7" stroke-linecap="round"/><line x1="82" y1="50" x2="82" y2="62" stroke="#C9A227" stroke-width="7" stroke-linecap="round"/></svg>'
+  };
+  const SERVICE_ICONS = ['search','star','funnel','link'];
+  const DIFF_ICONS = ['shield','search','funnel','bolt'];
+  const INDUSTRY_ICONS = ['crane','gear','bag','chip','truck','key'];
+
+  const W='rgba(255,255,255,.16)', W2='rgba(255,255,255,.28)', G='rgba(201,162,39,.55)', G2='rgba(201,162,39,.85)';
+  const SCENES = {
+    crane: `<svg viewBox="0 0 300 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <rect x="6" y="96" width="38" height="84" fill="${W}"/><rect x="50" y="64" width="34" height="116" fill="${W2}"/>
+      <rect x="90" y="104" width="30" height="76" fill="${W}"/><rect x="126" y="40" width="40" height="140" fill="${W2}"/>
+      <g stroke="${G2}" stroke-width="4" stroke-linecap="round" fill="none">
+        <line x1="236" y1="14" x2="236" y2="180"/><line x1="160" y1="14" x2="292" y2="14"/>
+        <line x1="160" y1="14" x2="176" y2="30"/><line x1="278" y1="14" x2="278" y2="58"/>
+      </g><rect x="272" y="58" width="12" height="10" fill="${G2}"/>
+    </svg>`,
+    gear: `<svg viewBox="0 0 300 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="96" width="170" height="84" fill="${W}"/>
+      <polyline points="30,96 55,70 80,96 105,70 130,96 155,70 180,96 200,96" fill="none" stroke="${W2}" stroke-width="4"/>
+      <rect x="64" y="38" width="16" height="58" fill="${W2}"/><rect x="118" y="24" width="16" height="72" fill="${W2}"/>
+      <circle cx="68" cy="28" r="9" fill="${W}"/><circle cx="126" cy="14" r="10" fill="${W}"/>
+      <g fill="none" stroke="${G2}" stroke-width="7" stroke-linecap="round">
+        <circle cx="238" cy="110" r="34"/>
+        <line x1="238" y1="60" x2="238" y2="76"/><line x1="238" y1="144" x2="238" y2="160"/>
+        <line x1="188" y1="110" x2="204" y2="110"/><line x1="272" y1="110" x2="288" y2="110"/>
+        <line x1="203" y1="75" x2="214" y2="86"/><line x1="262" y1="134" x2="273" y2="145"/>
+        <line x1="273" y1="75" x2="262" y2="86"/><line x1="214" y1="134" x2="203" y2="145"/>
+      </g><circle cx="238" cy="110" r="11" fill="${G}"/>
+    </svg>`,
+    bag: `<svg viewBox="0 0 300 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <rect x="14" y="60" width="220" height="100" fill="${W}"/>
+      <g fill="${G2}"><polygon points="14,60 44,34 234,34 234,60"/></g>
+      <g fill="${W2}"><polygon points="14,60 44,34 74,60"/><polygon points="74,60 104,34 134,60"/><polygon points="134,60 164,34 194,60"/><polygon points="194,60 224,34 234,60 234,60"/></g>
+      <rect x="110" y="96" width="60" height="64" fill="${G}"/>
+      <path d="M190 70 L242 70 L250 150 L182 150 Z" fill="${W2}" stroke="${G2}" stroke-width="3"/>
+      <path d="M202 70 V54 a14 14 0 0 1 28 0 V70" fill="none" stroke="${G2}" stroke-width="5"/>
+    </svg>`,
+    chip: `<svg viewBox="0 0 300 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="${W}" stroke-width="2"><line x1="0" y1="40" x2="300" y2="40"/><line x1="0" y1="140" x2="300" y2="140"/><line x1="60" y1="0" x2="60" y2="180"/><line x1="220" y1="0" x2="220" y2="180"/></g>
+      <circle cx="60" cy="40" r="4" fill="${W2}"/><circle cx="220" cy="140" r="4" fill="${W2}"/><circle cx="220" cy="40" r="4" fill="${G}"/>
+      <rect x="96" y="46" width="108" height="88" rx="6" fill="${W}" stroke="${G2}" stroke-width="3"/>
+      <rect x="112" y="64" width="52" height="7" fill="${G2}"/><rect x="112" y="80" width="76" height="7" fill="${W2}"/><rect x="112" y="96" width="40" height="7" fill="${G2}"/>
+      <path d="M96 150 L96 166 L204 166 L204 150" fill="none" stroke="${W2}" stroke-width="4"/>
+    </svg>`,
+    truck: `<svg viewBox="0 0 300 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="30" width="46" height="46" fill="${W}"/><rect x="60" y="48" width="46" height="28" fill="${W2}"/>
+      <polygon points="0,180 300,180 230,124 70,124" fill="${W}" opacity=".4"/>
+      <rect x="40" y="86" width="110" height="52" fill="${W2}"/>
+      <path d="M150 100 H200 L224 124 V138 H150 Z" fill="none" stroke="${G2}" stroke-width="5" stroke-linejoin="round"/>
+      <circle cx="80" cy="150" r="14" fill="${G}"/><circle cx="196" cy="150" r="14" fill="${G}"/>
+    </svg>`,
+    key: `<svg viewBox="0 0 300 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <rect x="40" y="20" width="210" height="150" fill="${W}"/>
+      <g fill="${W2}">
+        <rect x="58" y="38" width="22" height="22"/><rect x="96" y="38" width="22" height="22"/><rect x="134" y="38" width="22" height="22"/><rect x="172" y="38" width="22" height="22"/><rect x="210" y="38" width="22" height="22"/>
+        <rect x="58" y="76" width="22" height="22"/><rect x="134" y="76" width="22" height="22"/><rect x="210" y="76" width="22" height="22"/>
+      </g>
+      <g fill="${G2}"><rect x="96" y="76" width="22" height="22"/><rect x="172" y="76" width="22" height="22"/></g>
+      <path d="M118 170 V128 a27 27 0 0 1 54 0 V170" fill="none" stroke="${G2}" stroke-width="6"/>
+      <circle cx="252" cy="36" r="16" fill="${G}" opacity=".7"/>
+    </svg>`
+  };
+
+  const HEAD_HTML = document.head.innerHTML;
+
+  function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function getRoute(){
+    const h = (location.hash || '').replace(/^#\/?/, '');
+    if (h === 'contact-apply') return 'contact';
+    return ROUTES.includes(h) ? h : 'home';
+  }
+
+  function getContactTab(){
+    const h = (location.hash || '').replace(/^#\/?/, '');
+    return h === 'contact-apply' ? 'apply' : 'hire';
+  }
+
+  function navHtml(route){
+    return `<nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="#/home">${mark('#0F4C5C','#C9A227','#8C8172')}
+          <div><b>E2E</b><small>HUMAN CAPITAL SOLUTIONS</small></div>
+        </a>
+        <div class="navlinks">
+          ${ROUTES.map(r=>`<a href="#/${r}" class="${r===route?'active':''}">${LABELS[r]}</a>`).join('')}
+        </div>
+        <a class="cta-top" href="#/contact">Partner With Us</a>
+      </div>
+    </nav>`;
+  }
+
+  function footerHtml(state){
+    return `<footer class="site" id="siteFooter">
+      <div class="wrap foot-grid" style="grid-template-columns:1.3fr 1fr 1fr 1fr">
+        <div>
+          <div class="foot-brand">${mark('#C9A227','#FFFFFF','#B79A6E')}<b>E2E Human Capital Solutions</b></div>
+          <p>Employee to employer, synced full circle.</p>
+        </div>
+        <div>
+          <h4>Solutions</h4>
+          ${state.services.map(s=>`<a href="#/services">${esc(s.title)}</a>`).join('')}
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="#/about">About Us</a>
+          <a href="#/industries">Industries</a>
+          <a href="#/contact">Partner With Us</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a data-field="contactPhone">${esc(state.contactPhone)}</a>
+          <a data-field="contactEmail">${esc(state.contactEmail)}</a>
+          <a data-field="contactAddress">${esc(state.contactAddress)}</a>
+        </div>
+      </div>
+      <div class="foot-bottom wrap">© E2E Human Capital Solutions. All rights reserved.</div>
+    </footer>`;
+  }
+
+  function pagehead(eyebrow, title, text){
+    return `<header class="pagehead"><div class="ring"></div><div class="wrap">
+      <p class="eyebrow">${esc(eyebrow)}</p>
+      <h1 class="serif">${esc(title)}</h1>
+      ${text?`<p>${esc(text)}</p>`:''}
+    </div></header>`;
+  }
+
+  function pageHome(state){
+    const heroStyle = state.heroImageId
+      ? `background-image:linear-gradient(0deg,rgba(15,20,18,.15),rgba(15,20,18,.15)),url('/_blob/${state.heroImageId}')`
+      : '';
+    return `
+    <header class="hero">
+      <div class="hero-bg ${state.heroImageId ? 'has-img' : ''}" style="${heroStyle}"></div>
+      <div class="hero-dots"></div>
+      <div class="hero-inner">
+        <p class="eyebrow" data-field="eyebrow">${esc(state.eyebrow)}</p>
+        <h1 class="serif" data-field="heroTitle">${esc(state.heroTitle)}</h1>
+        <p class="lead" data-field="heroLead">${esc(state.heroLead)}</p>
+        <div class="hero-ctas">
+          <a class="btn btn-amber" href="#/contact">Partner With Us →</a>
+          <a class="btn btn-outline" href="#/services">Our Services</a>
+        </div>
+      </div>
+      <label class="img-upload edit-only hidden" id="imgUploadBtn">Change photo
+        <input type="file" id="imgInput" accept="image/*" style="display:none">
+      </label>
+    </header>
+    <svg class="wave" viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C200,0 400,0 600,18 C800,36 1000,36 1200,8 L1200,40 L0,40 Z" fill="var(--cream)"/></svg>
+
+    <section class="dualpath" style="padding:0">
+      <div class="wrap">
+        <a class="dpcard" href="#/contact">
+          <span class="dpico">${ICONS.briefcase}</span>
+          <div class="body"><h4>Looking to hire?</h4><p>Partner with us to fill your next role, fast.</p></div>
+          <span class="go">→</span>
+        </a>
+        <a class="dpcard" href="#/contact-apply">
+          <span class="dpico">${ICONS.user}</span>
+          <div class="body"><h4>Looking for work?</h4><p>Apply and attach your CV — we'll keep you in mind.</p></div>
+          <span class="go">→</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap section-head">
+        <p class="kicker">ABOUT US</p>
+        <p data-field="aboutText" style="font-size:16px;color:var(--mute)">${esc(state.aboutText)}</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">WHAT WE DO</p>
+          <h2>Our Services</h2>
+          <p>Recruitment done properly, from first search to settled hire.</p>
+        </div>
+        <div class="grid g4">
+          ${state.services.map((s,i)=>`
+          <a class="card clickable" href="#/services">
+            <div class="ico">${ICONS[SERVICE_ICONS[i%4]]}</div>
+            <h3>${esc(s.title)}</h3>
+            <p>${esc(s.text)}</p>
+            <span class="more">Learn more →</span>
+          </a>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="ind-teaser">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">WHERE WE WORK</p>
+          <h2>Industries We Serve</h2>
+        </div>
+        <div class="grid g4">
+          ${state.industries.slice(0,4).map((ind,i)=>`<div class="ind-tile"><div class="scene">${SCENES[INDUSTRY_ICONS[i%6]]}</div><span class="badge">${ICONS[INDUSTRY_ICONS[i%6]]}</span><span>${esc(ind.title)}</span></div>`).join('')}
+        </div>
+        <div style="text-align:center;margin-top:28px"><a class="btn btn-teal" href="#/industries">View all industries →</a></div>
+      </div>
+    </section>
+
+    <section class="band diff">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker" style="color:#C9A227">WHY E2E</p>
+          <h2 class="bold-head">What Makes Us Different</h2>
+          <p>A new company — which means every client is a priority, not a number.</p>
+        </div>
+        <div class="grid g4">
+          ${state.diffs.map((d,i)=>`
+          <div class="card">
+            <div class="ico">${ICONS[DIFF_ICONS[i%4]]}</div>
+            <h3>${esc(d.title)}</h3>
+            <p>${esc(d.text)}</p>
+          </div>`).join('')}
+        </div>
+      </div>
+    </section>
+    `;
+  }
+
+  function pageServices(state){
+    return pagehead('WHAT WE DO', 'Our Services', 'Recruitment done properly is more than sending CVs. Every search includes the full chain, end to end.') + `
+    <section>
+      <div class="wrap">
+        <div class="grid g2">
+          ${state.services.map((s,i)=>`
+          <div class="card"><div class="ribbon"></div>
+            <div class="ico">${ICONS[SERVICE_ICONS[i%4]]}</div>
+            <h3 data-field="services.${i}.title">${esc(s.title)}</h3>
+            <p data-field="services.${i}.text">${esc(s.text)}</p>
+          </div>`).join('')}
+        </div>
+      </div>
+    </section>
+    <section class="band" style="padding:50px 0">
+      <div class="wrap" style="text-align:center">
+        <h2 style="margin-bottom:10px">Ready to start a search?</h2>
+        <p style="color:#CFE3E7;margin-bottom:24px">Tell us the role, and we'll take it from there.</p>
+        <a class="btn btn-amber" href="#/contact">Partner With Us →</a>
+      </div>
+    </section>
+    `;
+  }
+
+  function pageAbout(state){
+    return pagehead('ABOUT US', 'Employee to Employer, Synced Full Circle', state.aboutText) + `
+    <section>
+      <div class="wrap split">
+        <div>
+          <p class="kicker">VISION</p>
+          <p data-field="vision" style="font-size:16px">${esc(state.vision)}</p>
+        </div>
+        <div>
+          <p class="kicker">MISSION</p>
+          <p data-field="mission" style="font-size:16px">${esc(state.mission)}</p>
+        </div>
+      </div>
+    </section>
+    <section style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">OUR VALUES</p>
+          <h2>What We Stand On</h2>
+        </div>
+        <ul class="valuelist wrap" style="max-width:720px;margin:0 auto">
+          ${state.values.map((v,i)=>`<li><b data-field="values.${i}.title">${esc(v.title)}</b><span data-field="values.${i}.text">${esc(v.text)}</span></li>`).join('')}
+        </ul>
+      </div>
+    </section>
+    <section class="band diff" style="padding-top:56px">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker" style="color:#C9A227">WHY E2E</p>
+          <h2 class="bold-head">What Makes Us Different</h2>
+        </div>
+        <div class="grid g4">
+          ${state.diffs.map((d,i)=>`
+          <div class="card">
+            <div class="ico">${ICONS[DIFF_ICONS[i%4]]}</div>
+            <h3 data-field="diffs.${i}.title">${esc(d.title)}</h3>
+            <p data-field="diffs.${i}.text">${esc(d.text)}</p>
+          </div>`).join('')}
+        </div>
+      </div>
+    </section>
+    `;
+  }
+
+  function pageIndustries(state){
+    return pagehead('WHERE WE WORK', 'Industries We Serve', 'We place people across sectors, with the same process and the same standards.') + `
+    <section>
+      <div class="wrap">
+        <div class="grid g3">
+          ${state.industries.map((ind,i)=>`
+          <div class="card"><div class="ribbon"></div>
+            <div class="ico">${ICONS[INDUSTRY_ICONS[i%6]]}</div>
+            <h3 data-field="industries.${i}.title">${esc(ind.title)}</h3>
+            <p data-field="industries.${i}.text">${esc(ind.text)}</p>
+          </div>`).join('')}
+        </div>
+      </div>
+    </section>
+    `;
+  }
+
+  function hireFormHtml(){
+    return `<div class="form-card">
+      <h3>Tell us who you need to hire</h3>
+      <p class="hint">Share a few details and we'll come back with a plan \u2014 this opens a pre-filled email to our team.</p>
+      <div class="form-grid">
+        <div class="field"><label>Company name</label><input type="text" id="hireCompany" placeholder="Your company"></div>
+        <div class="field"><label>Contact person</label><input type="text" id="hireName" placeholder="Your name"></div>
+        <div class="field"><label>Work email</label><input type="email" id="hireEmail" placeholder="you@company.com"></div>
+        <div class="field"><label>Phone</label><input type="tel" id="hirePhone" placeholder="+20 ..."></div>
+        <div class="field full"><label>Role / hiring need</label><input type="text" id="hireRole" placeholder="e.g. Finance Manager, 3 warehouse technicians"></div>
+        <div class="field full"><label>Message</label><textarea id="hireMsg" placeholder="Tell us more about the role, timeline, and what you're looking for..."></textarea></div>
+      </div>
+      <button type="button" class="btn btn-teal" id="hireBtn">Send Inquiry \u2192</button>
+      <div class="form-status" id="hireStatus"></div>
+      <p class="form-note">This opens your email app with your message ready to send to us.</p>
+    </div>`;
+  }
+
+  function applyFormHtml(){
+    return `<div class="form-card">
+      <h3>Apply with us</h3>
+      <p class="hint">Tell us about yourself and attach your CV \u2014 we'll keep you in mind for the right role.</p>
+      <div class="form-grid">
+        <div class="field"><label>Full name</label><input type="text" id="applyName" placeholder="Your name"></div>
+        <div class="field"><label>Email</label><input type="email" id="applyEmail" placeholder="you@email.com"></div>
+        <div class="field"><label>Phone</label><input type="tel" id="applyPhone" placeholder="+20 ..."></div>
+        <div class="field"><label>Role you're interested in</label><input type="text" id="applyRole" placeholder="e.g. Accountant, Sales Executive"></div>
+        <div class="field full"><label>Message</label><textarea id="applyMsg" placeholder="A few lines about your experience..."></textarea></div>
+        <div class="field full">
+          <label>Attach CV</label>
+          <div class="file-field">
+            <label class="pick" for="applyFile">Choose file</label>
+            <input type="file" id="applyFile" accept=".pdf,.doc,.docx" style="display:none">
+            <span class="fname" id="applyFileName">No file chosen (PDF or Word)</span>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-amber" id="applyBtn">Send Application \u2192</button>
+      <div class="form-status" id="applyStatus"></div>
+      <p class="form-note">This opens your email app with your message ready \u2014 attach the CV file you chose above to that email before sending, since a website can't attach it for you automatically.</p>
+    </div>`;
+  }
+
+  function pageContact(state){
+    const tab = getContactTab();
+    const title = tab === 'apply' ? 'Apply For a Role' : 'Let\u2019s Talk Hiring';
+    const sub = tab === 'apply' ? 'Send us your details and CV, and we will keep you in mind for the right opportunity.' : 'Tell us about the role, and we will come back with a plan.';
+    return pagehead('GET IN TOUCH', title, sub) + `
+    <section>
+      <div class="wrap" style="max-width:980px">
+        <div class="tabswitch">
+          <a href="#/contact" class="${tab==='hire'?'active':''}">I want to hire</a>
+          <a href="#/contact-apply" class="${tab==='apply'?'active':''}">I'm looking for work</a>
+        </div>
+        <div class="split" style="align-items:start">
+          <div>${tab==='apply' ? applyFormHtml() : hireFormHtml()}</div>
+          <div>
+            <div class="contact-card">
+              <h4>Phone</h4>
+              <a data-field="contactPhone" href="#">${esc(state.contactPhone)}</a>
+              <h4>Email</h4>
+              <a data-field="contactEmail" href="#">${esc(state.contactEmail)}</a>
+              <h4>Address</h4>
+              <p data-field="contactAddress">${esc(state.contactAddress)}</p>
+              <h4>Website</h4>
+              <a data-field="contactWebsite" href="#">${esc(state.contactWebsite)}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    `;
+  }
+
+  const PAGES = {home:pageHome, services:pageServices, about:pageAbout, industries:pageIndustries, contact:pageContact};
+
+  function renderBody(state, route){
+    route = route || getRoute();
+    return `${navHtml(route)}
+    <main id="page">${PAGES[route](state)}</main>
+    ${footerHtml(state)}
+    <div class="edit-fab" id="editFab"></div>`;
+  }
+
+  function renderDoc(state, route){
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>${HEAD_HTML}</head>
+<body>
+<div id="app">${renderBody(state, route||'home')}</div>
+<script id="site-state" type="application/json">${JSON.stringify(state)}<\/script>
+${document.getElementById('logic-script').outerHTML}
+</body>
+</html>`;
+  }
+
+  function getByPath(obj, path){
+    return path.split('.').reduce((o,k)=> o==null?o:o[/^\d+$/.test(k)?+k:k], obj);
+  }
+  function setByPath(obj, path, val){
+    const parts = path.split('.');
+    let o = obj;
+    for (let i=0;i<parts.length-1;i++){ const k = /^\d+$/.test(parts[i])?+parts[i]:parts[i]; o = o[k]; }
+    const last = parts[parts.length-1];
+    o[/^\d+$/.test(last)?+last:last] = val;
+  }
+
+  let state = JSON.parse(document.getElementById('site-state').textContent);
+  let editing = false;
+
+  function paint(){
+    APP.innerHTML = renderBody(state);
+    wireUploadButton();
+    wireContactForm();
+    paintFab();
+    if (editing){ applyEditing(); }
+  }
+
+  function openMailto(subject, lines){
+    const body = lines.filter(Boolean).join('\n');
+    window.location.href = `mailto:${state.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+
+  function wireContactForm(){
+    const hireBtn = document.getElementById('hireBtn');
+    if (hireBtn){
+      hireBtn.onclick = function(){
+        const company = document.getElementById('hireCompany').value.trim();
+        const name = document.getElementById('hireName').value.trim();
+        const email = document.getElementById('hireEmail').value.trim();
+        const phone = document.getElementById('hirePhone').value.trim();
+        const role = document.getElementById('hireRole').value.trim();
+        const msg = document.getElementById('hireMsg').value.trim();
+        openMailto(`Hiring inquiry${company ? ' — ' + company : ''}`, [
+          `Company: ${company || '-'}`, `Contact person: ${name || '-'}`, `Email: ${email || '-'}`,
+          `Phone: ${phone || '-'}`, `Role / hiring need: ${role || '-'}`, '', msg
+        ]);
+        const st = document.getElementById('hireStatus');
+        if (st){ st.textContent = 'Opening your email app with this message — review and hit send.'; st.classList.add('ok'); }
+      };
+    }
+    const applyBtn = document.getElementById('applyBtn');
+    if (applyBtn){
+      const fileInput = document.getElementById('applyFile');
+      const fileName = document.getElementById('applyFileName');
+      if (fileInput && fileName){
+        fileInput.onchange = function(){
+          fileName.textContent = fileInput.files[0] ? fileInput.files[0].name : 'No file chosen (PDF or Word)';
+        };
+      }
+      applyBtn.onclick = function(){
+        const name = document.getElementById('applyName').value.trim();
+        const email = document.getElementById('applyEmail').value.trim();
+        const phone = document.getElementById('applyPhone').value.trim();
+        const role = document.getElementById('applyRole').value.trim();
+        const msg = document.getElementById('applyMsg').value.trim();
+        const file = fileInput && fileInput.files[0];
+        const lines = [
+          `Name: ${name || '-'}`, `Email: ${email || '-'}`, `Phone: ${phone || '-'}`,
+          `Role interested in: ${role || '-'}`, '', msg
+        ];
+        if (file) lines.push('', `CV attached: ${file.name} — please attach this file to this email before sending.`);
+        openMailto(`Job application${role ? ' — ' + role : ''}`, lines);
+        const st = document.getElementById('applyStatus');
+        if (st){
+          st.textContent = file
+            ? `Opening your email app — don't forget to attach "${file.name}" before sending.`
+            : 'Opening your email app with this message — review and hit send.';
+          st.classList.add('ok');
+        }
+      };
+    }
+  }
+
+  function applyEditing(){
+    document.body.classList.add('editing');
+    document.querySelectorAll('[data-field]').forEach(el=>{ el.contentEditable = 'true'; });
+    const up = document.getElementById('imgUploadBtn');
+    if (up) up.classList.remove('hidden');
+  }
+
+  function paintFab(){
+    const fab = document.getElementById('editFab');
+    if (!fab) return;
+    if (!canEdit){ fab.innerHTML=''; return; }
+    if (!editing){
+      fab.innerHTML = `<button class="start" id="btnStart">✎ Edit page</button>`;
+      document.getElementById('btnStart').onclick = startEdit;
+    } else {
+      fab.innerHTML = `<span class="status" id="status">Editing — click text to change it</span>
+        <button class="cancel" id="btnCancel">Cancel</button>
+        <button class="save" id="btnSave">Save changes</button>`;
+      document.getElementById('btnCancel').onclick = cancelEdit;
+      document.getElementById('btnSave').onclick = saveEdit;
+    }
+  }
+
+  function startEdit(){
+    editing = true;
+    applyEditing();
+    paintFab();
+  }
+
+  function cancelEdit(){
+    editing = false;
+    document.body.classList.remove('editing');
+    paint();
+  }
+
+  async function saveEdit(){
+    document.querySelectorAll('[data-field]').forEach(el=>{
+      const path = el.getAttribute('data-field');
+      setByPath(state, path, el.textContent.trim());
+    });
+    const statusEl = document.getElementById('status');
+    if (statusEl) statusEl.textContent = 'Saving…';
+    try{
+      const artifact = await claude.use('artifact');
+      if (!artifact){ if(statusEl) statusEl.textContent = 'Could not save here.'; return; }
+      await artifact.publish(renderDoc(state, getRoute()));
+      editing = false;
+      document.body.classList.remove('editing');
+      paint();
+    }catch(e){
+      if (statusEl) statusEl.textContent = 'Save failed — try again.';
+    }
+  }
+
+  function wireUploadButton(){
+    const input = document.getElementById('imgInput');
+    if (!input) return;
+    input.onchange = async function(){
+      const file = input.files[0];
+      if (!file) return;
+      const statusEl = document.getElementById('status');
+      if (statusEl) statusEl.textContent = 'Uploading photo…';
+      try{
+        const assets = await claude.use('assets');
+        if (!assets){ if(statusEl) statusEl.textContent='Uploads unavailable.'; return; }
+        const res = await assets.upload(file);
+        state.heroImageId = res.id;
+        if (statusEl) statusEl.textContent = 'Photo added — click Save changes';
+        const bg = document.querySelector('.hero-bg');
+        if (bg){ bg.classList.add('has-img'); bg.style.backgroundImage = `linear-gradient(0deg,rgba(15,20,18,.15),rgba(15,20,18,.15)),url('${res.url}')`; }
+      }catch(e){
+        if (statusEl) statusEl.textContent = 'Upload failed.';
+      }
+    };
+  }
+
+  let canEdit = false;
+  window.addEventListener('hashchange', ()=>{ paint(); });
+
+  async function init(){
+    paint();
+    try{
+      const user = await claude.use('user');
+      canEdit = !!(user && user.canEdit && user.canEdit());
+    }catch(e){ canEdit = false; }
+    paintFab();
+  }
+  init();
+})();
+</script>
+</body>
+</html>
